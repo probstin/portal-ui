@@ -1,0 +1,26 @@
+<app-layout>
+    <section>
+        <div>
+            <h1>{{title}}</h1>
+            <p *ngIf="description">{{description}}</p>
+        </div>
+        <div class="flex-spacer"></div>
+        <button mat-flat-button color="primary">Register a New Project</button>
+    </section>
+    <ng-container 
+        *ngIf="(projects$ | async) as projects;" 
+        [ngSwitch]="projects.state">
+        <ng-container *ngSwitchCase="ContentState.LOADING">
+            <p>Loading projects...</p>
+        </ng-container>
+        <ng-container *ngSwitchCase="ContentState.ERROR">
+            <p>Failed to load page: {{projects.error}}.</p>
+        </ng-container>
+        <ng-container *ngSwitchCase="ContentState.LOADED">
+            <app-project-list-item 
+                *ngFor="let project of projects.data" 
+                [project]="project">
+            </app-project-list-item>
+        </ng-container>
+    </ng-container>
+</app-layout>

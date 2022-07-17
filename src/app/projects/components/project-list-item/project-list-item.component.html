@@ -1,0 +1,20 @@
+<a 
+    [routerLink]="project.id" 
+    tabindex="0" 
+    [attr.aria-label]="project.name">
+    <div class="list-item-wrapper">
+        <div class="list-item-content">
+            <div class="list-item-header-container">
+                <div class="list-item-eyebrow">
+                    {{project.organization}}
+                </div>
+                <div class="list-item-header">
+                    <h2>{{project.name}}</h2>
+                </div>
+            </div>
+            <div class="list-item-description-container">
+                <p>{{project.description}}</p>
+            </div>
+        </div>
+    </div>
+</a>

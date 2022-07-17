@@ -1,3 +1,22 @@
 {
-    "projects": []
+    "projects": [
+        {
+            "id": 1,
+            "name": "My First Project",
+            "shorthand": "MFP",
+            "poc": "Justin Probst",
+            "organization": "LT Consulting, LLC",
+            "description": "This is the description area that can contain very  short or very long text. The height of these list boxes will react to the length of this description provided at the time of creation.",
+            "accred_number": "123456"
+        }
+    ],
+    "access_controls": [
+        {
+            "id": 1,
+            "project_id": 1,
+            "level":"ADMIN",
+            "type": "ROLE",
+            "value":"LTC_GMAIL_ACCOUNT"
+        }
+    ]
 }
