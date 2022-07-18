@@ -18,12 +18,22 @@ export class ProjectsService {
 
   getAllProjects(): Observable<PortalObservable> {
     return this._http
-      .get<any>(this.PROJECTS_API_ROOT)
+      .get<any[]>(this.PROJECTS_API_ROOT)
       .pipe(
         map((projects: any[]) => ({ state: ContentState.LOADED, data: projects })),
         startWith({ state: ContentState.LOADING }),
         catchError((e: any) => of({ state: ContentState.ERROR, error: e.message }))
       );
+  }
+
+  getProjectById(projectId: number): Observable<PortalObservable> {
+    return this._http
+      .get<any>(this.PROJECTS_API_ROOT + `/${projectId}`)
+      .pipe(
+        map((project: any) => ({ state: ContentState.LOADED, data: project })),
+        startWith({ state: ContentState.LOADING }),
+        catchError((e: any) => of({ state: ContentState.ERROR, error: e.message }))
+      )
   }
 
 }
