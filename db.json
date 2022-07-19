@@ -8,15 +8,25 @@
             "organization": "LT Consulting, LLC",
             "description": "This is the description area that can contain very  short or very long text. The height of these list boxes will react to the length of this description provided at the time of creation.",
             "accred_number": "123456"
+        },
+        {
+            "id": 2,
+            "name": "My Second Project",
+            "shorthand": "MFP",
+            "poc": "Justin Probst",
+            "organization": "ABC Company 123",
+            "description": "This is the description area that can contain very  short or very long text. The height of these list boxes will react to the length of this description provided at the time of creation.",
+            "accred_number": "123456",
+            "disableGs": true
         }
     ],
     "access_controls": [
         {
             "id": 1,
             "project_id": 1,
-            "level":"ADMIN",
+            "level": "ADMIN",
             "type": "ROLE",
-            "value":"LTC_GMAIL_ACCOUNT"
+            "value": "LTC_GMAIL_ACCOUNT"
         }
     ]
 }

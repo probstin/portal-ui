@@ -1,11 +1,11 @@
-<ng-container *ngIf="(project$ | async) as project;" [ngSwitch]="project.state">
+<ng-container *ngIf="(project$ | async) as project;">
     <mat-toolbar color="primary">
         <button mat-icon-button (click)="sidenav.toggle()" class="menu-button" fxHide fxShow.lt-md>
             <mat-icon>menu</mat-icon>
         </button>
         <a routerLink="/my-projects">My Projects</a>
         <span>/</span>
-        <span>{{project?.data?.name || '--'}}</span>
+        <span>{{project?.name || '--'}}</span>
         <span class="flex-spacer"></span>
     </mat-toolbar>
     <mat-sidenav-container class="example-container">

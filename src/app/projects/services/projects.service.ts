@@ -29,11 +29,6 @@ export class ProjectsService {
   getProjectById(projectId: number): Observable<PortalObservable> {
     return this._http
       .get<any>(this.PROJECTS_API_ROOT + `/${projectId}`)
-      .pipe(
-        map((project: any) => ({ state: ContentState.LOADED, data: project })),
-        startWith({ state: ContentState.LOADING }),
-        catchError((e: any) => of({ state: ContentState.ERROR, error: e.message }))
-      )
   }
 
 }

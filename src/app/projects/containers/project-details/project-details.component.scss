@@ -2,12 +2,11 @@ mat-sidenav-container,
 mat-sidenav-content,
 mat-sidenav {
   /* Using 100vh causes double scrollbars to appear on some devices */
-  height: 90vh;
+  height: calc(100vh - 116px);
 }
 
 mat-sidenav-container {
   padding-bottom: 10px;
-  border-bottom: 1px solid #808080;
 }
 
 mat-sidenav {

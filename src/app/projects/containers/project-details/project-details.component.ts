@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
-import { mergeMap, Observable, Subscription, tap } from 'rxjs';
-import { PortalObservable } from 'src/app/shared/models/portal-observable';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, Observable, Subscription, tap } from 'rxjs';
 import { ProjectsService } from '../../services/projects.service';
 import { projectDetailsMenu } from './project-details-menu';
 
@@ -14,11 +13,9 @@ import { projectDetailsMenu } from './project-details-menu';
 })
 export class ProjectDetailsComponent implements OnInit {
 
-  project$!: Observable<PortalObservable>;
-  links = ['Getting Started', 'Applications'];
+  project$!: Observable<any>;
   opened: boolean = true;
-  
-  public readonly menu = projectDetailsMenu;
+  menu: any[] = [...projectDetailsMenu];
 
   private _mediaSubscription: Subscription;
 
@@ -26,6 +23,7 @@ export class ProjectDetailsComponent implements OnInit {
     private _route: ActivatedRoute,
     private _projectsService: ProjectsService,
     private _title: Title,
+    private _router: Router,
     private _mediaObserver: MediaObserver
   ) {
     this._mediaSubscription = this._mediaObserver
@@ -39,10 +37,22 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.project$ = this._route
-      .params
+      .data
       .pipe(
-        mergeMap(({ id }) => this._projectsService.getProjectById(+id)),
-        tap(({ data }: PortalObservable) => this._title.setTitle(`${data?.name} - Portal UI`))
+        map(({ project }) => project),
+        tap((project: any) => {
+
+          if (project.disableGs == undefined || !project.disableGs) {
+            // add getting-started to the list
+            this.menu.push({
+              label: 'Getting Started',
+              route: 'getting-started'
+            });
+
+            this._router.navigate([`getting-started`], { relativeTo: this._route });
+          }
+
+        })
       );
   }
 
